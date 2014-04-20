@@ -2,6 +2,8 @@
 
 Public ip checker for go
 
+Ip checking generously provided by (http://icanhazip.com)[http://icanhazip.com]
+
 ## Example Usage
 
 #### Check
