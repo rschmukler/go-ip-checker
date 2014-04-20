@@ -15,7 +15,7 @@ var (
 
 func Check() string {
   resp, err := http.Get("http://ipv4.icanhazip.com")
-  if(err != nil) {
+  if err != nil {
     panic(err)
   }
   defer resp.Body.Close()
@@ -26,7 +26,7 @@ func Check() string {
 // Polls every duration. Sends updates when the IP changes on the channel. 
 // Will also poll immediately.
 func Poll(every time.Duration) chan string {
-  if(quit != nil) {
+  if quit != nil {
     return results
   }
   var oldIp string
