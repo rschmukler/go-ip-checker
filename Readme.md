@@ -13,17 +13,30 @@ ip := ipchecker.Check()
 fmt.Printf("My ip is: %s\n", ip)
 ```
 
-#### Poll/Stop
+#### Poll
 
 ```go
 for {
   checkEvery := time.Duration(30) * time.Second
+  ipChanged := ipchecker.Poll(checkEvery)
   select {
-    case ip := <- ipchecker.Poll(checkEvery):
+    case ip := <- ipChanged:
       fmt.Printf("Ip changed to: %s\n", ip)
-    case <- time.After(time.Duration(30) * time.Second):
-      ipchecker.Stop()
-      break
+  }
+}
+```
+
+#### Working with IP Checkers
+
+```go
+checker := ipchecker.NewIPChecker(time.Minute)
+checker.Start()
+for {
+  select {
+    case ip := <- ipChanged:
+      fmt.Printf("Ip changed to: %s\n", ip)
+    case <-time.After(2 * time.Minute):
+      checker.Stop()
   }
 }
 ```
