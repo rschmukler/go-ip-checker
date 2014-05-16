@@ -1,6 +1,7 @@
 package ipchecker
 
 import (
+  "strings"
   "time"
   "io/ioutil"
   "net/http"
@@ -20,7 +21,7 @@ func Check() string {
   }
   defer resp.Body.Close()
   ip, _ := ioutil.ReadAll(resp.Body)
-  return string(ip)
+  return strings.Trim(string(ip), "\n")
 }
 
 // Polls every duration. Sends updates when the IP changes on the channel. 
