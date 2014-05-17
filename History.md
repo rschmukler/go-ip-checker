@@ -1,4 +1,9 @@
 
+0.0.4 / 2014-05-17 
+==================
+
+ * add caching of old ip to avoid triggering over and over
+
 0.0.3 / 2014-05-15 
 ==================
 
