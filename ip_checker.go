@@ -53,6 +53,7 @@ func (i *IPChecker) Start() {
   checkIp := func() {
     if ip := Check(); ip != oldIp {
       i.C <- ip
+      oldIp = ip
     }
   }
   go func() {
